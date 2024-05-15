@@ -17,7 +17,8 @@ def login(request):
             if user:
                 auth.login(request, user)
                 messages.success(request, f"{username}, Вы вошли в аккаунт")
-                if request.POST.get('next', None):
+                redirect_page = request.POST.get('next', None)
+                if redirect_page and redirect_page != reverse('user:logout'):
                     return HttpResponseRedirect(request.POST['next'])
                 return HttpResponseRedirect(reverse('main:index'))
     else:
@@ -66,8 +67,10 @@ def profile(request):
     }
     return render(request, 'users/profile.html', context)
 
+
 def users_cart(request):
     return render(request, 'users/users-cart.html')
+
 
 @login_required
 def logout(request):
