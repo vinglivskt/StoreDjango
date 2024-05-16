@@ -5,6 +5,7 @@ from users.models import User
 
 
 class UserLoginForm(AuthenticationForm):
+
     class Meta:
         model = User
         fields = ['username', 'password']
@@ -25,8 +26,8 @@ class UserLoginForm(AuthenticationForm):
     #                                       'placeholder': 'Введите ваш пароль'})
     # )
 
-
 class UserRegistrationForm(UserCreationForm):
+
     class Meta:
         model = User
         fields = (
@@ -37,13 +38,14 @@ class UserRegistrationForm(UserCreationForm):
             "password1",
             "password2",
         )
-
+    
     first_name = forms.CharField()
     last_name = forms.CharField()
     username = forms.CharField()
     email = forms.CharField()
     password1 = forms.CharField()
     password2 = forms.CharField()
+
 
     # first_name = forms.CharField(
     #     widget=forms.TextInput(
@@ -94,7 +96,6 @@ class UserRegistrationForm(UserCreationForm):
     #     )
     # )
 
-
 class ProfileForm(UserChangeForm):
     class Meta:
         model = User
@@ -110,6 +111,8 @@ class ProfileForm(UserChangeForm):
     last_name = forms.CharField()
     username = forms.CharField()
     email = forms.CharField()
+
+
 
     # image = forms.ImageField(
     #     widget=forms.FileInput(attrs={"class": "form-control mt-3"}), required=False
